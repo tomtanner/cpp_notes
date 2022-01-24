@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,key;
+    cout<<"Enter the size for n";
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    cout<<"Enter key";
+    cin>>key;
+    //binary search
+    int lower=0;
+    int higher=n-1;
+    int mid;
+    while(lower<=higher)
+    {
+        mid=(lower+higher)/2;
+        if(arr[mid]==key)
+            return mid;
+        else if (key>arr[mid])
+        lower=mid+1;
+        else
+            higher=mid-1;
+    }
+}

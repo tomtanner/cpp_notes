@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+int updatebit(int n,int pos,int value)
+{
+    n=(n&(~(1<<pos)));
+    return (n|(value<<pos));
+}
+int main()
+{
+    int n,pos,value;
+    cout<<"Enter the number"<<endl;
+    cin>>n;
+    cout<<"Enter the position"<<endl;
+    cin>>pos;
+    cout<<"Enter the value"<<endl;
+    cin>>value;
+    cout<<updatebit(n,pos,value);
+    return 0;
+}

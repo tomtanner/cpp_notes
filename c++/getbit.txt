@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int getbit(int n,int pos)
+{
+  return ((n&(1<<pos))!=0);
+}
+int main()
+{
+    int n,pos;
+    cout<<"Enter the number"<<endl;
+    cin>>n;
+    cout<<"Enter the position in which you want to know the bit";
+    cin>>pos;
+     cout<<getbit(n,pos);
+
+    return 0;
+}

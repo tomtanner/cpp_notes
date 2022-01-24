@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+//error occurs when all the variables are declared as integers
+    float n,i,j,k,coeff=1;
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        for(j=1;j<n-i;j++)
+        {
+            cout<<" ";
+        }
+        for(j=0;j<=i;j++)
+        {
+           if(j==0)
+            cout<<"1"<<" ";
+           else{
+            coeff*=(i-j+1)/j;
+            cout<<coeff<<" ";
+           }
+        }
+        cout<<endl;
+    }
+    return 0;
+}

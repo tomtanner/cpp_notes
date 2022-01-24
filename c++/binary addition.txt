@@ -1,0 +1,28 @@
+#include <stdio.h>
+int bs(int b1,int b2)
+{
+    int x,y,a,b,result=0,place=1,carry=0;
+    x=max(b1,b2);
+    y=min(b1,b2);
+    while(x>=0)
+    {
+        a=x%10;
+        b=y%10;
+        result=((a+b+carry)%2)*place +result;
+        carry=(a+b+carry)/2;
+        place*=10;
+    x/=10;
+    y/=10;
+    if(x==0 &&carry==0)
+        break;
+    }
+    return result;
+
+}
+int main()
+{
+    int b1,b2;
+    printf("Enter two binary numbers:\n");
+    scanf("%d%d",&b1,&b2);
+    printf("%d",bs(b1,b2);
+}

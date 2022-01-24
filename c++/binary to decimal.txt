@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+int btd(int n)
+{
+    int r,ans=0,m=1;
+    while(n!=0)
+    {
+        r=n%10;
+        ans+=r*m;
+        m*=2;
+        n/=10;
+    }
+    return ans;
+}
+int main()
+{
+    int n;
+    cout<<"Enter a number ";
+    cin>>n;
+    cout<<"The binary equivalent is "<<btd(n);
+    return 0;
+}

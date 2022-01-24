@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int limit,num=2;
+    cin>>limit;
+    label1:if(num>limit)
+        exit(0);
+    else
+    {
+        int div=2;
+        label2:if(div<num)
+        {
+            if(num%div==0)
+           {
+                num++;
+            goto label1;
+           }
+            else
+        {
+            div++;
+            goto label2;
+        }
+        }
+        cout<<num<<" ";
+        num++;
+        goto label1;
+
+    }
+
+}

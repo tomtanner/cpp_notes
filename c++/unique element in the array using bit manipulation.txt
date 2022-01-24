@@ -1,0 +1,22 @@
+#include iostream
+using namespace std;
+int unique(int arr[],int n)
+{
+     for(int i=0;in;i++)
+    {
+        int cnt=0;
+        for(int j=i+1;jn;j++)
+        {
+            if((arr[i]^arr[j])==0)
+                cnt++;
+        }
+        if(cnt==0)
+            return arr[i];
+    }
+}
+int main()
+{
+    int arr[]={2,4,6,3,4,6,2};
+   coutunique(arr,7);
+    return 0;
+}

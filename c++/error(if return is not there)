@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+class node
+{
+public:
+    int data;
+    node* next;
+    node(int val)
+    {
+        data=val;
+        next=NULL;
+    }
+};
+void insert_tail(int value,node* &head_ref)
+{
+    node* n=new node(value);
+    if(head_ref==NULL)
+    {
+        head_ref=n;
+        return;//code will go into an infinite loop if return is not present  but it is logically inconsistent
+    }
+    node* cur=head_ref;
+    while(cur->next!=NULL)
+    {
+        cout<<"while hit"<<endl;
+        cur=cur->next;
+    }
+    cur->next=n;
+}
+void display(node *head)
+{
+    if(head==NULL)
+    {
+        cout<<"The list is empty"<<endl;
+        return;
+    }
+    node* n=head;
+    while(n!=NULL)
+    {
+        cout<<n->data<<"\t";
+        n=n->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    node *head;
+    head=NULL;
+    insert_tail(10,head);
+    display(head);
+    return 0;
+}

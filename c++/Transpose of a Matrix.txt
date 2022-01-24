@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,i,j,temp;
+    cout<<"Enter the number of rows";
+    cin>>n;
+    int arr[n][n];
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+            cin>>arr[i][j];
+    }
+    for(i=0;i<n;i++)
+    {
+        //swap
+        for(j=i;j<n;j++)
+        {
+        temp=arr[i][j];
+        arr[i][j]=arr[j][i];
+        arr[j][i]=temp;
+        }
+    }
+    //print
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            cout<<arr[i][j]<<" ";
+
+        }
+        cout<<endl;
+    }
+    return 0;
+}

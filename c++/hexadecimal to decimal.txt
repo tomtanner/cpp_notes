@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int htd(string str)
+{
+    int ans=0,x=1;
+    int n=str.size();
+    for(int i=n-1;i>=0;i--)
+    {
+        if(str[i]>='A' && str[i]<='Z')
+        {
+           ans+=(str[i]-'A'+10)*x;
+        }
+        else if(str[i]>='0'&& str[i]<='9')
+        {
+            ans+=(str[i]-'0')*x;
+        }
+        x*=16;
+    }
+    return ans;
+}
+int main()
+{
+    string str;
+   cout<<"enter a hexadecimal number"<<endl;
+   cin>>str;
+   cout<<"The decimal equivalent of this is "<<htd(str);
+return 0;
+}
