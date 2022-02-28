@@ -9,6 +9,10 @@ class node{
         data=d;
         next=NULL;
     }
+    node()
+    {
+        next=NULL;
+    }
 };
 void display(node* head)
 {
@@ -85,19 +89,87 @@ while(pos--)
     head2=head2->next;
     head2->next=head1;
 }
+node* merge(node* h1,node* h2)
+{
+node* h3=new node();
+node *ptr=h3;
+while(h1!=NULL && h2!=NULL)
+{
+    if(h2->data<h1->data)
+    {
+        ptr->next=h2;
+        ptr=ptr->next;
+        h2=h2->next;
+    }
+    else
+    {
+        ptr->next=h1;
+        ptr=ptr->next;
+        h1=h1->next;
+    }
+    }
+    while(h1!=NULL)
+     {
+    ptr->next=h1;
+    ptr=ptr->next;
+    h1=h1->next;
+     }
+     while(h2!=NULL)
+     {
+         ptr->next=h2;
+         ptr=ptr->next;
+         h2=h1->next;
+     }
+
+return h3->next;
+}
+node* mergeRecursive(node* h1,node* h2)
+{
+    if(h1==NULL){
+        return h2;
+    }
+    if(h2==NULL)
+    {
+        return h1;
+    }
+    node* result;
+    if(h1->data<h2->data)
+    {
+        result=h1;
+        result->next=mergeRecursive(h1->next,h2);
+    }
+    else{
+        result=h2;
+        result->next=mergeRecursive(h1,h2->next);
+    }
+    return result;
+}
 int main()
 {
+    //node *head1=NULL,*head2=NULL;
+    //insertattail(head1,10);
+    //insertattail(head1,20);
+    //insertattail(head1,30);
+    //insertattail(head1,40);
+    //insertattail(head2,1);
+    //insertattail(head2,2);
+    //insertattail(head2,3);
+    //intersector(head1,head2,2);
+    //display(head1);
+    //display(head2);
+    //cout<<intersection(head1,head2);
+    //return 0;this was the code for detecting intersection in linked list
     node *head1=NULL,*head2=NULL;
-    insertattail(head1,10);
-    insertattail(head1,20);
-    insertattail(head1,30);
-    insertattail(head1,40);
-    insertattail(head2,1);
-    insertattail(head2,2);
-    insertattail(head2,3);
-    intersector(head1,head2,2);
-    display(head1);
-    display(head2);
-    cout<<intersection(head1,head2);
+    insertattail(head1,1);
+    insertattail(head1,7);
+    insertattail(head1,9);
+    insertattail(head1,23);
+    insertattail(head2,10);
+    insertattail(head2,11);
+    insertattail(head2,13);
+    insertattail(head2,15);
+    //head1=merge(head1,head2);
+    cout<<"After merging the final linked list is:\n";
+    display(mergeRecursive(head1,head2));
     return 0;
 }
