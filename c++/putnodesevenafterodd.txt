@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+
+    node(int value)
+    {
+        data=value;
+        next=NULL;
+    }
+};
+void insertattail(node* &head,int value)
+{
+    node* n=new node(value);
+    if(head==NULL)
+    {
+        head=n;
+        return;
+    }
+    node* temp=head;
+    while(temp->next!=NULL)
+    temp=temp->next;
+    temp->next=n;
+}
+void display(node* head)
+{
+    if(head==NULL)
+    {
+        cout<<"The linked list is empty"<<endl;
+        return;
+    }
+    while(head!=NULL)
+    {
+        cout<<head->data<<"->";
+        head=head->next;
+    }
+    cout<<endl;
+}
+void putevenafterodd(node* head)
+{
+    node* odd=head;
+    node* even=head->next;
+    node* evenstart=even;
+    while(odd->next && even->next)
+    {
+        odd->next=even->next;
+        odd=even->next;
+        even->next=odd->next;
+        even=odd->next;
+    }
+    odd->next=evenstart;
+}
+int main()
+{
+    node* head=NULL;
+     insertattail(head,1);
+     insertattail(head,2);
+     insertattail(head,3);
+     insertattail(head,4);
+     insertattail(head,5);
+    insertattail(head,6);
+    insertattail(head,7);
+     display(head);
+     putevenafterodd(head);
+     display(head);
+     return 0;
+}

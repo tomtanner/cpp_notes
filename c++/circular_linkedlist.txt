@@ -1,0 +1,138 @@
+#include <iostream>
+using namespace std;
+class node
+{
+   public:
+    int data;
+    node *next;
+    node(int value)
+    {
+        data=value;
+        next=NULL;
+    }
+};
+void insertAtHead(node* &head,int item);
+void insertAtTail(node* &head,int item)
+{
+    node* n=new node(item);
+    if(head==NULL){
+        insertAtHead(head,item);
+    }
+    else
+    {
+        node* temp=head;
+        while(temp->next!=head)
+        {
+            temp=temp->next;
+        }
+        temp->next=n;
+        n->next=head;
+
+    }
+
+}
+void insertAtHead(node* &head,int item)
+{
+    node* n=new node(item);
+    if(head==NULL){
+        head=n;
+        n->next=head;
+    }
+    else{
+        node* temp=head;
+        while(temp->next!=head)
+        temp=temp->next;
+        n->next=head;
+        temp->next=n;
+        head=n;
+    }
+
+}
+void display(node* head)
+{
+    if(head==NULL)
+    {
+        cout<<"The list is empty"<<endl;
+        return;
+    }
+    node* temp;
+    temp=head;
+   do{
+       cout<<temp->data<<"->";
+       temp=temp->next;
+   }while(temp!=head);
+    cout<<endl;
+}
+void deleteAtrear(node* head)
+{
+    if(head==NULL)
+    {
+        cout<<"The list is empty"<<endl;
+        return;
+    }
+    node* temp=head;
+    while(temp->next->next!=head)
+    temp=temp->next;
+    node* todel=temp->next;
+    temp->next=head;
+    delete todel;
+}
+void deleteAtHead(node* &head)
+{
+    if(head==NULL)
+    return;
+    node* temp=head;
+    while(temp->next!=head)
+    temp=temp->next;
+    temp->next=head->next;
+    delete head;
+    head=temp->next;
+}
+void deletion(node* &head,int pos)
+{
+    //  node *temp=head;
+    //  if(pos==1){
+    //      while(temp->next!=head)
+    //      temp=temp->next;
+    //      temp->next=head->next;
+    //      delete head;
+    //      head=temp->next;
+    //      return;
+    //  }
+    //  pos-=2;
+    //  while(pos--)
+    //  temp=temp->next;
+    //  node* todel=temp->next;
+    //  temp->next=temp->next->next;
+    //  delete todel;
+    //^ is my written code
+    node* temp=head;
+    if(pos==1)
+    {
+        deleteAtHead(head);
+        return;
+    }
+    int count=1;
+    while(count!=pos-1)
+    {
+        temp=temp->next;
+        count++;
+    }
+    node* todel=temp->next;
+    temp->next=temp->next->next;
+    delete todel;
+}
+int main()
+{ 
+    node* head=NULL;
+    insertAtTail(head,1);
+    insertAtTail(head,2);
+    insertAtTail(head,3);
+    insertAtTail(head,4);
+    insertAtTail(head,5);
+    insertAtTail(head,6);
+    insertAtTail(head,7);
+    display(head);
+    display(head);
+   return 0;
+}
