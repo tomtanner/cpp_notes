@@ -1,48 +1,32 @@
 #include <iostream>
-#include <string>
-#include <stack>
-#include <math.h>
 using namespace std;
-int preFixEvaluation(string s)
-{
-    stack<int> st;
-    for(int i=s.length()-1;i>=0;i--)
+class node{
+    public:
+    int data;
+    node* next;
+    node(int val)
     {
-       if(s[i]>='0' && s[i]<='9')
-       {
-           st.push(s[i]-'0');
-       }
-       else
-       {
-        int op1,op2;
-        op1=st.top();
-        st.pop();
-        op2=st.top();
-        st.pop();
-        switch(s[i])
-        {
-           case '+':
-           st.push(op1+op2);
-           break;
-           case '-':
-           st.push(op1-op2);
-           break;
-           case '*':
-           st.push(op1*op2);
-           break;
-           case '/':
-           st.push(op1/op2);
-           break;
-           case '^':
-           st.push(pow(op1,op2));
-           break;
-        }
-       }
+        data=val;
+        next=NULL;
     }
-    return st.top();
+};
+class queue{
+    node* front;
+    node* back;
+    public:
+    queue(){
+        front=NULL;
+        back=NULL;
+    }
+    void push(int x)
+    {
+        node* n=new node(x);
+        front
+        back->next=n;
+        back=n;
+    }
 }
 int main()
 {
-   cout<<preFixEvaluation("-+7*45+20")<<endl;
-   return 0;
+    return 0;
 }

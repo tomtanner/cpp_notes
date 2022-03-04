@@ -1,0 +1,40 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+bool balancedparenthesis(string s)
+{
+    stack<char>st;
+    int i=0;
+    for(;i<s.length();i++)
+    {
+        if(s[i]=='(' || s[i]=='[' || s[i]=='{')
+          st.push(s[i]);
+        else
+        break;
+    }
+    for(;i<s.length();i++)
+    {
+        char match;
+        if(st.top()=='[')
+        match=']';
+        else if(st.top()=='(')
+        match=')';
+        else 
+        match='}';
+        if(s[i]==match)//matching
+        {
+            st.pop();
+        }
+        else
+        return false;
+    }
+    return true;
+}
+int main()
+{
+    string s;
+    cout<<"Enter a parenthesis:"<<endl;
+    cin>>s;
+    cout<<balancedparenthesis(s);
+    return 0;
+}

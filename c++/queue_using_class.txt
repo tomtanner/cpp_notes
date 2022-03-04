@@ -1,0 +1,79 @@
+#include <iostream>
+using namespace std;
+#define n 5
+class queue{
+    int* arr;
+    int front;
+    int back;
+    
+    public:
+    queue()
+    {
+        arr=new int[n];
+        front=-1;
+        back=-1;
+    }
+    void push(int x)
+    {
+         if(back==n-1)
+         {
+             cout<<"queue overflow"<<endl;
+             return;
+         }
+         back++;
+         arr[back]=x;
+         if(front==-1)
+         front++;
+    }
+    void pop()
+    {
+        if(front==-1 ||(front>back))
+        {
+            cout<<"Queue underflow"<<endl;
+            return;
+        }
+        cout<<arr[front]<<" was deleted"<<endl;
+        front++;
+    }
+    void peek()
+    {//returns the element at the front
+       if(front>back || front==-1)
+       {
+           cout<<"Queue is empty"<<endl;
+           return;
+       }
+       cout<<"The peek element is "<<arr[front]<<endl;
+    }
+    bool empty(){
+       if(front>back || front==-1)
+       return true;
+       else
+       return false;
+    }
+    void display(){
+        if(front>back || front==-1)
+        {
+            cout<<"The queue is empty"<<endl;
+            return;
+        }
+        cout<<"The elements of the queue are"<<endl;
+        for(int i=front;i<=back;i++)
+          cout<<arr[i]<<" ";
+          cout<<endl;
+    }
+};
+int main()
+{
+    queue q;
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    q.push(40);
+    q.pop();
+    q.pop();
+    q.pop();
+    q.pop();    q.pop();
+
+    cout<<q.empty();
+    return 0;
+}
