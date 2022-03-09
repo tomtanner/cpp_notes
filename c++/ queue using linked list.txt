@@ -1,0 +1,102 @@
+#include <iostream>
+using namespace std;
+class node{
+	public:
+    int data;
+	node* next;
+	node(int val)
+	{
+		data=val;
+		next=NULL;
+	}
+};
+class queue{
+	node* front;
+	node* back;
+	public:
+	queue()
+	{
+		front=back=NULL;
+	}
+	void push(int x)
+	{
+		node* n=new node(x);
+		if(front==NULL)
+		{
+			front=back=n;
+			return;
+		}
+		back->next=n;
+		back=n;
+	}
+	// void delete()
+	// {
+    //    if(front==NULL)
+	//    {
+	// 	   cout<<"The queue underflow"<<endl;
+	// 	   return;
+	//    }
+	//    node* temp=front;
+	//    if(front==back)//only one node
+	//    {
+	// 	   cout<<back->data<<" was deleted"<<endl;
+	// 	   delete front;
+	// 	   front=back=NULL;
+	//    }
+	//    while(temp->next->next!=NULL)
+	//    temp=temp->next;
+	//    cout<<back->data<<" was deleted"<<endl;
+	//    delete back;
+	//    back=t;
+	// }
+	void display()
+	{
+		if(front==NULL)
+		{
+			cout<<"Queue is empty"<<endl;
+			return;
+		}
+		node* temp=front;
+		while(temp!=NULL)
+		{
+          cout<<temp->data<<" ";
+          temp=temp->next;
+		}
+	}
+	void pop()
+	{
+		if(front==NULL)
+		{
+			cout<<"The queue is empty"<<endl;
+			return;
+		}
+		cout<<front->data<<" was deleted"<<endl;
+		node* todelete=front;
+		front=front->next;
+		delete todelete;
+	}
+	int peek()
+	{
+		if(front==NULL)
+	      return 0;
+		return front->data;
+
+	}
+	bool empty()
+	{
+		if(front==NULL)
+		return true;
+		return false;
+	}
+};
+int main()
+{
+    queue q;
+	q.push(10);
+	q.push(20);
+	q.push(30);
+	q.pop();
+	q.pop();
+	cout<<q.empty();
+	return 0;
+}
