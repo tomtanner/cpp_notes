@@ -1,0 +1,78 @@
+//stack using queues(method 2) pop method costly
+#include <iostream>
+#include <queue>
+using namespace std;
+class Stack
+{
+    int N;
+    queue<int>q1,q2;
+    public:
+    Stack()
+    {
+        N=0;
+    }
+    void pop()
+    {
+        if(q1.empty())
+        {
+            return;
+        }
+        while(q1.size()!=1)
+        {
+            q2.push(q1.front());
+            q1.pop();
+        }
+        // cout<<q1.top()<<" was popped"<<endl;
+        q1.pop();
+        N--;
+        q1=q2;
+        q2=queue<int>();
+    }
+    void push(int val)
+    {
+        q1.push(val);
+        N++;
+    }
+    int top()
+    {
+        if(q1.empty())
+        {
+            return -1;
+        }
+        while(q1.size()!=1)
+        {
+            q2.push(q1.front());
+            q1.pop();
+        }
+        int ans=q1.front();
+        q2.push(ans);
+        q1=q2;
+        q2=queue<int>();
+        return ans;
+    }
+    int size()
+    {
+        return N;
+    }
+    void display()
+    {
+        queue<int> temp=q1;
+        while(!temp.empty())
+        {
+            cout<<temp.front()<<" ";
+            temp.pop();
+        }
+    }
+};
+int main()
+{
+    Stack st;
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(4);
+    st.top();
+    st.pop();
+   st.display();
+    return 0;
+}

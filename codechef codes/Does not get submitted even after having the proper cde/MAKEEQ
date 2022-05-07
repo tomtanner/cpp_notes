@@ -1,0 +1,42 @@
+#include <iostream>
+#include <climits>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int t,n,m,k,count,i;
+    scanf("%d",&t);
+    while(t--)
+    {
+    scanf("%d%d%d",&n,&m,&k);
+    int bin[n];
+    for(i=0;i<n;i++)
+    scanf("%d",&bin[i]);
+    count=0;
+    // for(i=0;i<n && bin[i]==1;i++)
+    // {
+    //    // printf("flag\n");
+    //    count++;
+    // }
+    // if(count==n)
+    // printf("100\n");
+    // else if(count==m)
+    // printf("%d\n",k);
+    // else 
+    // printf("0\n"); this commented seems to have no errors even then it is not getting accepted
+   
+    int ans=0;
+    for(int i=0;i<n;i++)
+    {
+        if(bin[i]==1)
+        count++;
+        if(i==m-1 && count==m)
+        ans=k;
+    }
+    if(count==n)
+    printf("100\n");
+    else
+    printf("%d\n",ans);
+    }
+    return 0;
+}
