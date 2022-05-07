@@ -1,31 +1,70 @@
-//using one conventional stack and one system stack
 #include <iostream>
-#include <stack>
 using namespace std;
-class queue{
-	stack<int>s1;
-	public:
-	void push(int x)
-	{
-		s1.push(x);
-	}
-	int pop()
-	{
-		if(s1.empty())
-		{
-			cout<<"Queue is empty"<<endl;
-			return -1;
-		}
-		int res=s1.top();
-		s1.pop();
-        if(s1.empty())
-		return res;
-		int item=pop();
-		s.push(res);
-		return item;
-	}
+bool isSafe(int** arr,int x, int y,int n)
+{
+   if(x<n && y<n && arr[x][y]==1)
+   {
+       return true;
+   }
+   return false;
+}
+bool ratinMaze(int** arr,int x,int y,int n,int** solArr)
+{
+    if(x==n-1 && y==n-1)
+    {
+        solArr[x][y]=1;
+        return true;
+    }
+    if(isSafe(arr,x,y,n))
+    {
+        solArr[x][y]=1;
+        if(ratinMaze(arr,x+1,y,n,solArr))
+        {
+            return true;
+        }
+        if(ratinMaze(arr,x,y+1,n,solArr))
+        return true;
+        solArr[x][y]=0;  //backtracking
+        return false;
+    }
+    return false;
 }
 int main()
 {
-	return 0;
+    int n;
+    cout<<"Enter the value of n:"<<endl;
+    cin>>n;
+    int** arr=new int*[n];
+    for(int i=0;i<n;i++){
+        arr[i]=new int[n];
+    }
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+        cin>>arr[i][j];
+    
+    int** solArr=new int*[n];
+    for(int i=0;i<n;i++){
+        solArr[i]=new int[n];
+        for(int j=0;j<n;j++)
+           solArr[i][j]=0;
+    }
+    cout<<"The sol array is:"<<endl;
+    if(ratinMaze(arr,0,0,n,solArr)){
+        for(int i=0;i<n;i++)
+        {
+        for(int j=0;j<n;j++)
+        {
+          cout<<solArr[i][j]<<" ";
+        }
+        cout<<endl;
+        }
+       
+    }
+    return 0;
 }
+// 1 0 1 0 1
+// 1 1 1 1 1 
+// 0 1 0 1 0 
+// 1 0 0 1 1 
+// 1 1 1 0 1
+//------------------------------------------------
