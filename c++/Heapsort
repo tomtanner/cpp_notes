@@ -1,0 +1,65 @@
+#include <stdio.h>
+void heapify(int H[],int n)
+{
+    int k,v,heap,j;
+    for(int i=n/2;i>0;i--)
+    {
+        k=i;
+        v=H[k];
+        heap=0;
+        while(!heap && 2*k<=n)
+        {
+            j=2*k;
+            if(j<n){
+                if(H[j]<H[j+1])
+                j=j+1;
+            }
+            if(v>=H[j])
+            heap=1;
+            else{
+            H[k]=H[j];
+            k=j;
+        }
+        }
+        H[k]=v;
+    }
+} 
+void swap(int *a,int *b)
+{
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+}
+void heapsort(int H[],int n)
+{
+    heapify(H,n);
+    for(int i=n;i>0;i--)
+    {
+        heapify(H,i);
+        swap(&H[1],&H[i]);
+    }
+}
+void printarray(int arr[],int n)
+{
+    for(int i=1;i<=n;i++)
+    printf("%d\t",arr[i]);
+    printf("\n");
+}
+int main()
+{
+    int n;
+    printf("Enter the size:\n");
+    scanf("%d",&n);
+    int arr[n+1];
+    printf("Enter the elements:\n");
+    for(int i=1;i<=n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    printf("Before sorting:\n");
+    printarray(arr,n);
+    heapsort(arr,n);
+    printf("After sorting:\n");
+    printarray(arr,n);
+    return 0;
+}
